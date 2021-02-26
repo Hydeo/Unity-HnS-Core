@@ -14,7 +14,8 @@ namespace RPG.Control
         [SerializeField] PatrolPath patrolPath = null;
         [SerializeField] float WaypointTolerance = 1.0f;
         [SerializeField] float waypointDwellTime = 2.0f;
-        [SerializeField] float patrolSpeed = 0.2f;
+        [Range(0,1)]
+        [SerializeField] float patrolSpeedFraction = 0.2f;
         Fighter fighter;
         GameObject player;
         Health health;
@@ -77,7 +78,7 @@ namespace RPG.Control
 
             if (timeSinceArrivedAtWaypoint > waypointDwellTime)
             {
-                mover.StartMoveAction(nextPositon);
+                mover.StartMoveAction(nextPositon, patrolSpeedFraction);
             }
         }
 
